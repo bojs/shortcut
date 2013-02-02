@@ -1,0 +1,10 @@
+{
+  "name": "shortcut",
+  "repo": "pfraces/shortcut",
+  "description": "keyboard shortcuts emitter",
+  "version": "0.1.0",
+  "dependencies": {},
+  "scripts": ["index.js"],
+  "keywords": ["keyboard", "shortcuts"],
+  "license": "MIT"
+}

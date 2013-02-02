@@ -36,3 +36,17 @@ el mismo código, pero difieren en la propiedad keyLocation
 *   `keyLocation === 0`: esta tecla no tiene multiples posiciones en el teclado
 *   `keyLocation === 1`: tecla izquierda
 *   `keyLocation === 2`: tecla derecha
+
+# Implementado
+
+*   Se puede usar la nomenclatura mencionada, con los siguientes tags
+
+    *   `enter, `space`
+    *   `ctrl, `alt, `shift`
+    *   `up, `down, `left, `right`
+
+*   Mantener la combinación de teclas presionada sólo generará una llamada al
+    _handler_
+*   Se puede encadenar un método `onEnd(endHandler)` que llamara a
+    _endHandler_ cuando el combo deje de estar presionado
+

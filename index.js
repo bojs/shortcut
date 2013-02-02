@@ -24,8 +24,14 @@ var keyMap = {
 
 Shortcut.prototype.on = function (shortcut, handler) {
   var tags = shortcut.split('+'),
-      currKeys = {};
+      currKeys = {},
+      handled = false,
+      endHandler;
   
+  var onEnd = function (handler) {
+    endHandler = handler;
+  };
+
   tags.forEach(function (tag) {
     var keyCode = keyMap[tag];
 
@@ -33,8 +39,9 @@ Shortcut.prototype.on = function (shortcut, handler) {
       if (ev.keyCode === keyCode) {
         /* cualquier valor wserviria en lugar de true */
         currKeys[tag] = true;
-        if (Object.keys(currKeys).length === tags.length) {
+        if (Object.keys(currKeys).length === tags.length && !handled) {
           handler();
+          handled = true;
         }
       }
     });
@@ -42,7 +49,17 @@ Shortcut.prototype.on = function (shortcut, handler) {
     document.body.addEventListener('keyup', function (ev) {
       if (ev.keyCode === keyCode) {
         delete currKeys[tag];
+        if (handled) {
+          handled = false;
+          if (typeof endHandler === 'function') {
+            endHandler();
+          }
+        }
       }
     });
   });
+
+  return {
+    onEnd: onEnd
+  };
 };

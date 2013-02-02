@@ -26,7 +26,7 @@ Shortcut.prototype.on = function (shortcut, handler) {
   var tags = shortcut.split('+'),
       currKeys = {};
   
-  tags.each(function (tag) {
+  tags.forEach(function (tag) {
     var keyCode = keyMap[tag];
 
     document.body.addEventListener('keydown', function (ev) {

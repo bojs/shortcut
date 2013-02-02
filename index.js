@@ -1,6 +1,6 @@
-module.exports = new Shortcut();
-
 var Shortcut = function () {};
+
+module.exports = new Shortcut();
 
 /**
  * Crear componente diccionario tal y como se explica en eloquent

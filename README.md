@@ -4,7 +4,7 @@ Keyboard shortcuts emitter
 
 ## Install
 
-    $ component pfraces/shortcut
+    $ component install corejs/shortcut
 
 ## Objetivos
 

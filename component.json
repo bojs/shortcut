@@ -1,8 +1,8 @@
 {
   "name": "shortcut",
-  "repo": "corejs/shortcut",
+  "repo": "bojs/shortcut",
   "description": "keyboard shortcuts emitter",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "dependencies": {},
   "scripts": ["index.js"],
   "keywords": ["keyboard", "shortcuts"],

@@ -4,7 +4,7 @@ Keyboard shortcuts emitter
 
 ## Install
 
-    $ component install corejs/shortcut
+    $ component install bojs/shortcut
 
 ## Objetivos
 

@@ -1,14 +1,51 @@
+var dictionary = require('dictionary');
+
+var shortcut = module.exports = function () {
+  return new Shortcut();
+};
+
 var Shortcut = function () {};
 
-module.exports = new Shortcut();
+Shortcut.prototype.on = function (shortcut, handler) {
+  var self = this,
+      tags = shortcut.split('+'),
+      currKeys = dictionary(),
+      handled = false;
 
-/**
- * Crear componente diccionario tal y como se explica en eloquent
- * y que muestre longitud como Array.length
- * 
- * Implementar keyMap y currKeys con diccionario
- */
-var keyMap = {
+  tags.forEach(function (tag) {
+    var keyCode = keyMap.get(tag);
+
+    document.body.addEventListener('keydown', function (ev) {
+      if (ev.keyCode === keyCode) {
+        currKeys.set(tag) = true;
+        if (currKeys.keys.length === tags.length && !handled) {
+          handler();
+          handled = true;
+        }
+      }
+    });
+
+    document.body.addEventListener('keyup', function (ev) {
+      if (ev.keyCode === keyCode) {
+        currKeys.del(tag);
+        if (handled) {
+          handled = false;
+          if (typeof self.endHandler === 'function') {
+            self.endHandler();
+          }
+        }
+      }
+    });
+  });
+  return this;
+};
+
+Shortcut.prototype.onEnd = function (handler) {
+  this.endHandler = handler;
+  return this;
+};
+
+var keyMap = dictionary({
   enter: 13,
   space: 32,
 
@@ -20,46 +57,4 @@ var keyMap = {
   down: 40,
   left: 37,
   right: 39,
-};
-
-Shortcut.prototype.on = function (shortcut, handler) {
-  var tags = shortcut.split('+'),
-      currKeys = {},
-      handled = false,
-      endHandler;
-  
-  var onEnd = function (handler) {
-    endHandler = handler;
-  };
-
-  tags.forEach(function (tag) {
-    var keyCode = keyMap[tag];
-
-    document.body.addEventListener('keydown', function (ev) {
-      if (ev.keyCode === keyCode) {
-        /* cualquier valor wserviria en lugar de true */
-        currKeys[tag] = true;
-        if (Object.keys(currKeys).length === tags.length && !handled) {
-          handler();
-          handled = true;
-        }
-      }
-    });
-
-    document.body.addEventListener('keyup', function (ev) {
-      if (ev.keyCode === keyCode) {
-        delete currKeys[tag];
-        if (handled) {
-          handled = false;
-          if (typeof endHandler === 'function') {
-            endHandler();
-          }
-        }
-      }
-    });
-  });
-
-  return {
-    onEnd: onEnd
-  };
-};
+});

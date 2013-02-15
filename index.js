@@ -16,7 +16,7 @@ Shortcut.prototype.on = function (shortcut, handler) {
     document.body.addEventListener('keydown', function (ev) {
       if (ev.keyCode === keyCode) {
         currKeys.set(tag, true);
-        if (currKeys.keys.length === tags.length && !handled) {
+        if (currKeys.keys().length === tags.length && !handled) {
           handler();
           handled = true;
         }

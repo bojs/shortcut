@@ -1,6 +1,8 @@
 var dictionary = require('dictionary');
 
-var shortcut = module.exports = new Shortcut();
+var shortcut = module.exports = (function () {
+  new Shortcut();
+})();
 
 var Shortcut = function () {};
 

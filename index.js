@@ -1,10 +1,8 @@
 var dictionary = require('dictionary');
 
-var shortcut = module.exports = (function () {
-  new Shortcut();
-})();
-
 var Shortcut = function () {};
+
+var shortcut = module.exports = new Shortcut();
 
 Shortcut.prototype.on = function (shortcut, handler) {
   var self = this,

@@ -1,4 +1,5 @@
-var dictionary = require('dictionary');
+var dictionary = require('dictionary')
+    type = require('type');
 
 var Shortcut = function () {};
 
@@ -28,8 +29,8 @@ Shortcut.prototype.on = function (shortcut, handler) {
         currKeys.del(tag);
         if (handled) {
           handled = false;
-          if (typeof self.endHandler === 'function') {
-            self.endHandler();
+          if (typeof self.endHandlers[shortcut] === 'function') {
+            self.endHandlers[shortcut]();
           }
         }
       }
@@ -38,8 +39,8 @@ Shortcut.prototype.on = function (shortcut, handler) {
   return this;
 };
 
-Shortcut.prototype.onEnd = function (handler) {
-  this.endHandler = handler;
+Shortcut.prototype.onEnd = function (shortcut, handler) {
+  this.endHandlers[shortcut] = handler;
   return this;
 };
 

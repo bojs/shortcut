@@ -1,7 +1,9 @@
 var dictionary = require('dictionary')
     type = require('type');
 
-var Shortcut = function () {};
+var Shortcut = function () {
+  this.endHandlers = dictionary();
+};
 
 var shortcut = module.exports = new Shortcut();
 
@@ -29,8 +31,8 @@ Shortcut.prototype.on = function (shortcut, handler) {
         currKeys.del(tag);
         if (handled) {
           handled = false;
-          if (self.endHandlers[shortcut]) {
-            self.endHandlers[shortcut]();
+          if (self.endHandlers.has(shortcut)) {
+            self.endHandlers.get(shortcut)();
           }
         }
       }
@@ -40,7 +42,7 @@ Shortcut.prototype.on = function (shortcut, handler) {
 };
 
 Shortcut.prototype.onEnd = function (shortcut, handler) {
-  this.endHandlers[shortcut] = handler;
+  this.endHandlers.set(shortcut) = handler;
   return this;
 };
 

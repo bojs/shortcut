@@ -42,7 +42,7 @@ Shortcut.prototype.on = function (shortcut, handler) {
 };
 
 Shortcut.prototype.onEnd = function (shortcut, handler) {
-  this.endHandlers.set(shortcut) = handler;
+  this.endHandlers.set(shortcut, handler);
   return this;
 };
 

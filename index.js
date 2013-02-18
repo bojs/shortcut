@@ -29,7 +29,7 @@ Shortcut.prototype.on = function (shortcut, handler) {
         currKeys.del(tag);
         if (handled) {
           handled = false;
-          if (typeof self.endHandlers[shortcut] === 'function') {
+          if (self.endHandlers[shortcut]) {
             self.endHandlers[shortcut]();
           }
         }
